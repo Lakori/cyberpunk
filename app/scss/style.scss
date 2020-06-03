@@ -13,9 +13,11 @@ body,html{
 header{
     background: url('../img/02.jpg') no-repeat;
     background-size: 100%; 
-    height:100%;
+    height:722px;
     transition:2s;
     animation:backGroundCloser 120s infinite;
+    box-shadow: 0 0 6px #0066FF;
+    border-bottom: 1px solid #0066FF;
    
     &:after{
     content:'';
@@ -30,14 +32,14 @@ header{
     
     @keyframes backGroundCloser {
        0%{
-        background-size: 100%;
+        background-size: 120%;
        }
         50%{
             background-size: 150%; 
         }
 
-        75%{
-            background-size: 101%; 
+        100%{
+            background-size: 120%; 
         }
        
     }
@@ -55,18 +57,22 @@ header{
 }
 
 .fixedNav{
-    position: fixed;
+    position: fixed !important;
     background: rgba(0,0,0,0.9);
 }
 .header{
     width:100%;
     height:70px;
+    display: -webkit-box;     
+    display: -webkit-flex;     
+    display: -ms-flexbox;     
     display: flex;
     flex-direction: row;
     margin:0 auto;
     top:0;
     z-index:10;
     transition:1s;
+    position: absolute;
    
 
     &:after{
@@ -99,6 +105,9 @@ header{
 
     }
     &__nav{
+        display: -webkit-box; 
+        display: -webkit-flex;     
+        display: -ms-flexbox;     
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -112,21 +121,22 @@ header{
 .main__header__hidden{
     width:100%;
     overflow: hidden;
-    height:100%;
+    height:722px;
 }
 .main__header{
-    height:100vh;
-    width:80%;
+    height:722px;
     margin:0 auto;
     z-index:5;
     position: relative;
-    display: flex;
+    display: -webkit-box;     display: -webkit-flex;     display: -ms-flexbox;     display: flex;
     flex-direction: row;
     transition:1s;
 
     &__man{
         overflow: hidden;
-        height:613px;
+        height:602px;
+        position: absolute;
+        bottom:0;
     }
 
     &__menu{
@@ -134,13 +144,19 @@ header{
         width:300px;
         height:400px;
         position: absolute;
-        bottom:0;
+        display: flex;
+        flex-direction: column;
+        bottom:-2px;
         right:0;
-        transform: translateX(50%);
-        padding:30px 90px;
+        padding:30px 0px 0px 70px;
         font-size:25px;
         font-weight: bold;
         transition:1s;
+        box-sizing: border-box;
+        box-shadow: 0 0 6px #0066FF;
+        border-top: 1px solid #0066FF;
+        border-left:1px solid #0066FF;
+        z-index:5;
 
         &__item{
             margin-bottom:50px;
@@ -155,7 +171,7 @@ header{
             padding: 4rem;
             border-radius: 100px;
             display: -webkit-box;
-            display: flex;
+            display: -webkit-box;     display: -webkit-flex;     display: -ms-flexbox;     display: flex;
             -webkit-box-pack: center;
             justify-content: center;
             -webkit-box-align: center;
@@ -165,11 +181,13 @@ header{
             box-sizing: border-box;
             text-align: center;
             line-height: 125%;
-            color: #FFFF;
+            color: #cdec44;
             letter-spacing: 0.1rem;
             -webkit-transition: 0.5s;
             transition: 0.5s;
             cursor:pointer;
+            outline: none;
+            text-decoration: none;
 
             &:before{
                 position: absolute;
@@ -215,8 +233,11 @@ header{
     padding:50px;
     position: relative;
     width:100%; 
-    height:650px;
+    height:750px;
     background: black;
+    box-sizing: border-box;
+   
+
 
     &__picture{
         background: url('../img/secondBg.jpg') no-repeat;
@@ -226,12 +247,16 @@ header{
         height:800px;
         position: absolute;
         bottom:0px;
-        left:50px;
+        left:5%;
         transition:2s;
+        -webkit-transform:translateY(100%);
         transform: translateY(100%);
         z-index:6;
+        box-shadow: 0 0 6px #0066FF;
+        border: 1px solid #0066FF;
         
         &-visible{
+            -webkit-transform:translateY(0);
             transform: translateY(0)
         }
     }
@@ -241,14 +266,15 @@ header{
         height:300px;
         position: absolute;
         top:150px;
-        right:10%;
-        transition:2s;
-        transform:translateX(150%);
-        &-title{
-            font-size:40px;
-            font-weight: bold;
-            color: rgb(29, 103, 241);
-            text-shadow: 1px 1px 2px rgb(178, 33, 142), 0 0 1em rgb(29, 103, 241);  
+        right:5%;
+        transition:5s;
+        opacity:0;
+
+        &-title{ 
+            font-size: 48px;
+        font-weight: 900;
+        -webkit-text-stroke: 1px rgb(29, 103, 241);
+        -webkit-text-fill-color: #20162d;
         }
         &-subtitle{
             font-size:26px;
@@ -257,19 +283,36 @@ header{
             text-shadow: 1px 1px 2px black, 0 0 1em #ebe152; 
         }
         &-visible{
-            transform:translateX(0%);
+            animation:visible 5s 1;
+            opacity:1;
+
+            
         }
     }
 
     
 }
 
+@keyframes visible {
+    0%{
+        opacity:0;
+    }
+    50%{
+        opacity:0.7;
+    }
+    100%{
+        opacity:1;
+    }
+}
+
 .man{
     padding:50px;
     position: relative;
     width:100%; 
-    height:100px;
+    height:600px;
     background: black;
+    box-sizing: border-box;
+    
 
     &__picture{
         background: url('../img/thirdBg.jpg') no-repeat;
@@ -278,31 +321,34 @@ header{
         width:600px;
         height:800px;
         position: absolute;
-        bottom:450px;
-        right:10%;
+        bottom:50px;
+        right:5%;
         transition:1s;
         transform: translateY(100%);
+        -webkit-transform: translateY(100%);
         z-index:6;
+        box-shadow: 0 0 6px #0066FF;
+        border: 1px solid #0066FF;
         
         &-visible{
+            -webkit-transform: translateY(0%);
             transform: translateY(0%);
         }
     }
     &__text{
         width:40%;
         height:300px;
-        // background: red;
         position: absolute;
         top:150px;
-        left:4%;
-        transition:2s;
-        transform:translateX(-150%);
+        left:5%;
+        transition:5s;
+        opacity:0;
 
         &-title{
-            font-size:40px;
-            font-weight: bold;
-            color: rgb(29, 103, 241);
-            text-shadow: 1px 1px 2px rgb(178, 33, 142), 0 0 1em rgb(29, 103, 241);  
+            font-size: 48px;
+            font-weight: 900;
+            -webkit-text-stroke: 1px rgb(29, 103, 241);
+            -webkit-text-fill-color: #20162d;
         }
         &-subtitle{
             font-size:26px;
@@ -311,11 +357,91 @@ header{
             text-shadow: 1px 1px 2px black, 0 0 1em #ebe152; 
         }
         &-visible{
-            transform:translateX(0%);
+            animation:visible 5s 1;
+            opacity:1;
         }
     }
 
 }
 
 
+.slider{
+    background: black;
+    width:100%;
+    height:500px;
+    position: relative;
 
+    &__container{
+        display: -webkit-box;     display: -webkit-flex;     display: -ms-flexbox;     display: flex;
+        flex-direction: row;
+        width:90%;
+        margin:0 auto;
+        padding-top:10%;
+        justify-content: space-between;
+        &__item-1{
+            width:30%;
+            height:300px;
+            background: url('../img/slider1.jpg') ;
+            background-size:cover;
+            transition:2s;
+            box-shadow: 0 0 6px #0066FF;
+            border: 1px solid #0066FF;
+            cursor:pointer;
+
+            &:hover{
+                -webkit-transform: scale(1.1) rotate(-10deg);
+                transform: scale(1.1) rotate(-10deg);
+            }
+        }
+        &__item-2{
+            width:30%;
+            height:300px;
+            background: url('../img/scroll2.jpg') ;
+            background-size:cover;
+            transition:2s;
+            box-shadow: 0 0 6px #0066FF;
+            border: 1px solid #0066FF;
+            cursor:pointer;
+
+            &:hover{
+                -webkit-transform:scale(1.1) rotate(-10deg);
+                transform: scale(1.1) rotate(-10deg);
+            }
+        }
+        &__item-3{
+            width:30%;
+            height:300px;
+            background: url('../img/scroll3.jpg');
+            background-size:cover;
+            transition:2s;
+            box-shadow: 0 0 6px #0066FF;
+            border: 1px solid #0066FF;
+            cursor:pointer;
+
+            &:hover{
+                -webkit-transform:scale(1.1) rotate(-10deg);
+                transform: scale(1.1) rotate(-10deg);
+            }
+        }
+
+        .biggerPicture{
+            width:100%;
+            height:100vh;
+            position: absolute;
+            bottom:0;
+            right:0;
+            left:0;
+            z-index:10;
+            -webkit-transform: rotate(0);
+            transform: rotate(0);
+
+        }
+    }
+}
+
+.video__container{
+    width:100%;
+    background:black;
+    display: flex;
+    justify-content: center;
+}
