@@ -13,7 +13,8 @@
 
 
     sliderBg.addEventListener('click', function (e) {
-        e.target.classList.toggle('biggerPicture')
+        document.body.style.setProperty('--bg-picture', `url('../img/scroll${e.target.title}.jpg')  no-repeat`)
+        window.scrollTo(0, 0);
     })
 
     window.addEventListener('scroll', function addLeftBlock(e) {
