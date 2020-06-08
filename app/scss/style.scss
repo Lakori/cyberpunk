@@ -12,6 +12,14 @@ a{
     color:#ebe152;
 }
 
+@mixin transform($property) {
+    -webkit-transform: $property;
+    -ms-transform: $property;
+    transform: $property;
+}
+
+
+
 :root{
     --bg-picture: url('../img/scroll3.jpg')  no-repeat; 
 }
@@ -20,7 +28,7 @@ a{
     display:none !important;
 }
 header{
-    background: var(--bg-picture);
+    background: var(--bg-picture, black);
     background-size: cover; 
     height:722px;
     transition:2s;
@@ -43,7 +51,7 @@ header{
         bottom:0px;
         left:30%;
         width:1px;
-        height:120%;
+        height:100%;
         background:linear-gradient(to right, rgba(42, 77, 232, 1) 0%, blue 100%);
         z-index:1;
         animation: rightLine 2s 1;
@@ -71,11 +79,8 @@ header{
 .header{
     width:100%;
     height:70px;
-    display: -webkit-box;     
-    display: -webkit-flex;     
-    display: -ms-flexbox;     
-    display: flex;
     flex-direction: row;
+    display:flex;
     margin:0 auto;
     top:0;
     z-index:10;
@@ -117,10 +122,7 @@ header{
 
     }
     &__nav{
-        display: -webkit-box; 
-        display: -webkit-flex;     
-        display: -ms-flexbox;     
-        display: flex;
+        display:flex;
         flex-direction: row;
         justify-content: space-around;
         width:70%;
@@ -153,7 +155,7 @@ header{
     margin:0 auto;
     z-index:5;
     position: relative;
-    display: -webkit-box;     display: -webkit-flex;     display: -ms-flexbox;     display: flex;
+    display:flex;
     flex-direction: row;
     transition:1s;
 
@@ -184,7 +186,7 @@ header{
         position: absolute;
         display: flex;
         flex-direction: column;
-        bottom:-2px;
+        bottom:-5px;
         right:0;
         padding:30px 0px 0px 70px;
         font-size:25px;
@@ -212,8 +214,7 @@ header{
             height: 100px;
             padding: 4rem;
             border-radius: 100px;
-            display: -webkit-box;
-            display: -webkit-box;     display: -webkit-flex;     display: -ms-flexbox;     display: flex;
+            display:flex;
             -webkit-box-pack: center;
             justify-content: center;
             -webkit-box-align: center;
@@ -243,8 +244,7 @@ header{
                 content: '';
                 background: #0066FF;
                 box-shadow: 0 0 1.8rem 0.2rem #0066FF;
-                -webkit-transform: rotate(45deg);
-                transform: rotate(45deg);
+                @include transform(rotate(45deg));
                 font-size: 16px;
             }
             
@@ -261,14 +261,14 @@ header{
 
             @keyframes hoverBtnMenu {
                 0%{
-                    transform: scale(1);
+                    @include transform(scale(1));
                 }
 
                 50%{
-                    transform: scale(1.1);
+                    @include transform(scale(1.1));
                 }
                 100%{
-                    transform: scale(1);
+                    @include transform(scale(1));
                 }
             }
         }
@@ -284,6 +284,7 @@ header{
     height:750px;
     background: black;
     box-sizing: border-box;
+    z-index:5;
    
     @media screen and (max-width: 1250px) {
         height:350px;
@@ -300,8 +301,7 @@ header{
         bottom:0px;
         left:5%;
         transition:2s;
-        -webkit-transform:translateY(100%);
-        transform: translateY(100%);
+        @include transform(translateY(100%));
         z-index:6;
         box-shadow: 0 0 6px #0066FF;
         border: 1px solid #0066FF;
@@ -316,13 +316,11 @@ header{
 
         @media screen and (max-width: 500px) {
            
-            -webkit-transform:translateY(0);
-            transform: translateY(0)
+            @include transform(translateY(0));
         }
         
         &-visible{
-            -webkit-transform:translateY(0);
-            transform: translateY(0)
+            @include transform(translateY(0));
         }
     }
 
@@ -401,8 +399,7 @@ header{
         bottom:50px;
         right:5%;
         transition:1s;
-        transform: translateY(100%);
-        -webkit-transform: translateY(100%);
+        @include transform( translateY(100%));
         z-index:6;
         box-shadow: 0 0 6px #0066FF;
         border: 1px solid #0066FF;
@@ -416,13 +413,11 @@ header{
         }
 
         @media screen and (max-width: 500px) {
-            -webkit-transform:translateY(0);
-            transform: translateY(0)
+            @include transform( translateY(0));
         }
 
         &-visible{
-            -webkit-transform: translateY(0%);
-            transform: translateY(0%);
+            @include transform( translateY(0));
         }
     }
     &__text{
@@ -505,16 +500,15 @@ header{
             cursor:pointer;
 
             &:hover{
-                -webkit-transform: scale(1.1) rotate(-10deg);
-                transform: scale(1.1) rotate(-10deg);
+                @include transform( scale(1.1) rotate(-10deg));
             }
             @media screen and (max-width: 500px) {
                 width:100%;
                 margin-bottom:5px;
                 height:200px;
                 &:hover{
-                    -webkit-transform:scale(1) rotate(0);
-                    transform: scale(1) rotate(0);
+                    @include transform( scale(1) rotate(0));
+                  
                 }
               }
         }
@@ -529,10 +523,7 @@ header{
             cursor:pointer;
 
             &:hover{
-                -webkit-transform:scale(1.1) rotate(-10deg);
-                transform: scale(1.1) rotate(-10deg);
-
-
+                @include transform(scale(1.1) rotate(-10deg));
             }
             @media screen and (max-width: 500px) {
                 width:100%;
@@ -540,8 +531,7 @@ header{
                 height:200px;
 
                 &:hover{
-                    -webkit-transform:scale(1) rotate(0);
-                    transform: scale(1) rotate(0);
+                    @include transform(scale(1) rotate(0));
                 }
               }
         }
@@ -556,8 +546,7 @@ header{
             cursor:pointer;
 
             &:hover{
-                -webkit-transform:scale(1.1) rotate(-10deg);
-                transform: scale(1.1) rotate(-10deg);
+                @include transform(scale(1.1) rotate(-10deg));
             }
 
             @media screen and (max-width: 500px) {
@@ -565,8 +554,7 @@ header{
                 margin-bottom:5px;
                 height:200px;
                 &:hover{
-                    -webkit-transform:scale(1) rotate(0);
-                    transform: scale(1) rotate(0);
+                    @include transform(scale(1) rotate(0));
                 }
               }
         }
@@ -585,8 +573,7 @@ header{
             right:0;
             left:0;
             z-index:10;
-            -webkit-transform: rotate(0);
-            transform: rotate(0);
+            @include transform(rotate(0));
 
         }
     }

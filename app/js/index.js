@@ -8,13 +8,19 @@
     let manPicture = document.querySelector('.man__picture');
     let manText = document.querySelector('.man__text');
     let navMenu = document.querySelector('.header__nav');
-
     let sliderBg = document.querySelector('.slider__container')
 
+    // if (!navigator.userAgent.includes('Chrome')) {
+    //     console.log('nen')
+    //     header.classList.add('header-safari')
+    // }
 
     sliderBg.addEventListener('click', function (e) {
+        // if (navigator.userAgent.includes('Chrome')) {
         document.body.style.setProperty('--bg-picture', `url('../img/scroll${e.target.title}.jpg')  no-repeat`)
         window.scrollTo(0, 0);
+        // }
+
     })
 
     window.addEventListener('scroll', function addLeftBlock(e) {
